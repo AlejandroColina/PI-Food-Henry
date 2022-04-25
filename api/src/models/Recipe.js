@@ -28,7 +28,7 @@ module.exports = (sequelize) => {
     },
 
     puntuacion: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.INTEGER,
       validate: {
         min: 0,
         max: 5,
@@ -36,7 +36,7 @@ module.exports = (sequelize) => {
     },
 
     nivelSaludable: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.INTEGER,
     },
 
     pasoApaso: {
