@@ -4,7 +4,8 @@ const { Dieta, Receta } = require('../db');
 const router = Router();
 router.use(express.json());
 const fs = require('fs');
-const { json } = require('body-parser');
+const { data } = require('../axios/index');
+
 
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -36,6 +37,16 @@ router.get('/recipes', async(req, res, next) => {
         }
     } catch (error) {
         next(error)
+    }
+});
+
+router.get('types', (req, res, next)=>{
+    try {
+        data().then(e=>{
+        
+        })
+    } catch (error) {
+        console.error(error)
     }
 });
 
