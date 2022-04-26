@@ -1,6 +1,8 @@
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 const { Receta, Dieta } = require('./src/db')
+const { data } = require('./src/axios');
+const { closeSync } = require('fs');
 // Syncing all the models at once.
 conn.sync({ force: true })
   .then(() => {
@@ -16,42 +18,41 @@ conn.sync({ force: true })
   })
 
   .then(async () => {
+
     try {
-      const receta1 = await Receta.create({
-        nombre: 'arroz',
-        resumenPlato: 'arroz blanco',
-        puntuacion: 4,
-        nivelSaludable: 4,
-        pasoApaso: 'agua, arroz...'
-      });
-      const receta2 = await Receta.create({
-        nombre: 'frijol',
-        resumenPlato: 'frijol rojo',
-        puntuacion: 4,
-        nivelSaludable: 4,
-        pasoApaso: 'frijol, platanos...'
-      });
-      const receta3 = await Receta.create({
-        nombre: 'lenteja',
-        resumenPlato: 'lenteja pitada',
-        puntuacion: 4,
-        nivelSaludable: 4,
-        pasoApaso: 'lentejas, papa...'
-      });
-      const receta4 = await Receta.create({
-        nombre: 'carne',
-        resumenPlato: 'sudada',
-        puntuacion: 4,
-        nivelSaludable: 4,
-        pasoApaso: 'carne, platano, yuca...'
+      let x = 1;
+      let id= `${x++}PI`
+
+      let receta = await Receta.create({
+        idReceta: id,
+        nombre: 'ajiaco',
+        resumenPlato: 'sopa con papa y de más',
+        puntuacion: 100,
+        nivelSaludable: 100,
+        pasoApaso: 'UNO,DOS,TRES y sirva'
       });
 
-      const dieta1 = await Dieta.create({
-        nombre: 'vegana'
+      let Dieta1 = await Dieta.create({
+        nombre : 'proteinica',
       });
-      const dieta2 = await Dieta.create({
-        nombre: 'base carne'
+
+      let Dieta2 = await Dieta.create({
+        nombre : 'vegana',
       });
+
+      let Dieta3 = await Dieta.create({
+        nombre : 'frutas',
+      });
+      // let p = 0;
+      // while (p == 0) {
+      //   ++p;
+      //   let dietas = [];
+      //   const response = await data()
+      //   response.map(e => dietas.push(e.diets));
+      //   dietas = [...new Set(dietas.flat())].map(e => Dieta.create({ nombre: e }));
+      //   return await Promise.all(dietas)
+      // }
+
     } catch (error) {
       console.log(error)
     }

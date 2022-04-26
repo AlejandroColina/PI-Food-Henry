@@ -9,11 +9,10 @@ module.exports = (sequelize) => {
   //     allowNull: false,
   //   },
   // });
-
+  
   const Receta = sequelize.define('Receta', {
     idReceta: {
-      type: DataTypes.UUID,
-      defaultValue: UUIDV4,
+      type: DataTypes.STRING,
       primaryKey: true
     },
 
@@ -31,7 +30,7 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       validate: {
         min: 0,
-        max: 5,
+        max: 100,
       }
     },
 
@@ -47,17 +46,10 @@ module.exports = (sequelize) => {
   });
 
   const Dieta = sequelize.define('Dieta', {
-
-    idDieta: {
-      type: DataTypes.UUID,
-      defaultValue: UUIDV4,
-      primaryKey: true
-    },
-
     nombre: {
       type: DataTypes.STRING,
     }
-  },{
+  }, {
     timestamps: false
   });
 };
