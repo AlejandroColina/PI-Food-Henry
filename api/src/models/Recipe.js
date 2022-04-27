@@ -16,17 +16,17 @@ module.exports = (sequelize) => {
       primaryKey: true
     },
 
-    nombre: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false
     },
 
-    resumenPlato: {
+    summary: {
       type: DataTypes.TEXT,
       allowNull: false
     },
 
-    puntuacion: {
+    spoonacularScore: {
       type: DataTypes.INTEGER,
       validate: {
         min: 0,
@@ -34,11 +34,11 @@ module.exports = (sequelize) => {
       }
     },
 
-    nivelSaludable: {
+    healthScore: {
       type: DataTypes.INTEGER,
     },
 
-    pasoApaso: {
+    steps: {
       type: DataTypes.TEXT,
     }
   }, {
@@ -46,7 +46,7 @@ module.exports = (sequelize) => {
   });
 
   const Dieta = sequelize.define('Dieta', {
-    nombre: {
+    title: {
       type: DataTypes.STRING,
     }
   }, {

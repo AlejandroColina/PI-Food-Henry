@@ -1,7 +1,7 @@
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 const { Receta, Dieta } = require('./src/db')
-const { data } = require('./src/axios');
+const { dataApi } = require('./src/axios');
 const { closeSync } = require('fs');
 // Syncing all the models at once.
 conn.sync({ force: true })
@@ -20,38 +20,38 @@ conn.sync({ force: true })
   .then(async () => {
 
     try {
-      let x = 1;
-      let id= `${x++}PI`
+      // let x = 1;
+      // let id= `${x++}PI`
 
-      let receta = await Receta.create({
-        idReceta: id,
-        nombre: 'ajiaco',
-        resumenPlato: 'sopa con papa y de más',
-        puntuacion: 100,
-        nivelSaludable: 100,
-        pasoApaso: 'UNO,DOS,TRES y sirva'
-      });
+      // let receta = await Receta.create({
+      //   idReceta: id,
+      //   title: 'ajiaco',
+      //   summary: 'sopa con papa y de más',
+      //   spoonacularScore: 100,
+      //   healthScore: 100,
+      //   steps: 'UNO,DOS,TRES y sirva'
+      // });
 
-      let Dieta1 = await Dieta.create({
-        nombre : 'proteinica',
-      });
+      // let Dieta1 = await Dieta.create({
+      //   title : 'proteinica',
+      // });
 
-      let Dieta2 = await Dieta.create({
-        nombre : 'vegana',
-      });
+      // let Dieta2 = await Dieta.create({
+      //   title : 'vegana',
+      // });
 
-      let Dieta3 = await Dieta.create({
-        nombre : 'frutas',
-      });
-      // let p = 0;
-      // while (p == 0) {
-      //   ++p;
-      //   let dietas = [];
-      //   const response = await data()
-      //   response.map(e => dietas.push(e.diets));
-      //   dietas = [...new Set(dietas.flat())].map(e => Dieta.create({ nombre: e }));
-      //   return await Promise.all(dietas)
-      // }
+      // let Dieta3 = await Dieta.create({
+      //   title : 'frutas',
+      // });
+      let p = 0;
+      while (p == 0) {
+        ++p;
+        let dietas = [];
+        const response = await dataApi()
+        response?.map(e => dietas.push(e.diets));
+        dietas = [...new Set(dietas.flat())]?.map(e => Dieta.create({ title: e }));
+        return await Promise.all(dietas)
+      }
 
     } catch (error) {
       console.log(error)
