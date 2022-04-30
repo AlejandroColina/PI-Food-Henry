@@ -2,7 +2,7 @@ const axios = require('axios');
 
 async function dataApi() {
     try {
-        const response = await axios.get('https://api.spoonacular.com/recipes/complexSearch?apiKey=d86ecd7633c544d2b154caac99efb054&addRecipeInformation=true&number=100');
+        const response = await axios.get('https://api.spoonacular.com/recipes/complexSearch?apiKey=b7eb18108243460c86124c1504f3fd43&addRecipeInformation=true&number=100');
         let data = await response.data.results
         return data;
     } catch (error) {
@@ -12,7 +12,7 @@ async function dataApi() {
 
 async function findByAPI(id) {
     try {
-        const response = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=d86ecd7633c544d2b154caac99efb054`)
+        const response = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=b7eb18108243460c86124c1504f3fd43`)
         let data = await response.data;
 
         let st = await data?.analyzedInstructions?.map(e => e.steps)?.flat(Infinity)?.map(e => e.step);
