@@ -16,7 +16,7 @@ async function findByAPI(id) {
         let data = await response.data;
 
         let st = await data?.analyzedInstructions?.map(e => e.steps)?.flat(Infinity)?.map(e => e.step);
-        let steps = st.length ? st : 'No existe el id en la bd ni en la api.'
+        let steps = st.length ? st : 'No contamos con un paso a paso.'
 
         let obj = {
             id: data.id,

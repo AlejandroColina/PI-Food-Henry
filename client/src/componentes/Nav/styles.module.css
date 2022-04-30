@@ -1,0 +1,28 @@
+.navbar{
+    width: 100vw;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    background-color: black;
+}
+
+.navbar ul{
+    display: flex;
+    list-style: none;
+}
+
+.navbar ul li{
+    margin: 8px;
+    text-decoration: none;
+}
+
+.link{
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.link:hover{
+    text-decoration: underline;
+    color: rgb(114, 114, 114);
+}

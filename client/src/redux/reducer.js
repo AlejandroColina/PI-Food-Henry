@@ -4,9 +4,9 @@ const initialState = {
     details: []
 };
 
-export function reducer(state = initialState, { action, payload }) {
-    switch (action) {
-        case 'DETAILS':
+export function reducer(state = initialState, { type, payload }) {
+    switch (type) {
+        case DETAILS:
             return {
                 ...state,
                 details: payload
