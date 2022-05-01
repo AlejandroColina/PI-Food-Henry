@@ -1,4 +1,4 @@
-import { DETAILS, ALLRECIPES } from './types';
+import { DETAILS, ALLRECIPES, CLEARPAGE } from './types';
 
 const initialState = {
     details: [],
@@ -17,6 +17,13 @@ export function reducer(state = initialState, { type, payload }) {
                 ...state,
                 allRecipes: payload
             }
+
+        case CLEARPAGE:
+            return {
+                ...state,
+                allRecipes : []
+            }    
+
         default: return state
     }
 };

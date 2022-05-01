@@ -1,0 +1,48 @@
+.div {
+    height: auto;
+    width: 400px;
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.inputSearch {
+    border-radius: 18px;
+    height: 25px;
+    width: 300px;
+    background: white;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0 8px;
+}
+
+.inputSearch input[type='text']{
+    height: 100%;
+    width: 70%;
+    border-style: none;
+    outline: none;
+}
+
+.submit{
+    height: 100%;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    border-radius: 8px;    
+    border-style: none;
+    outline: none;
+    font-weight: bold;
+}
+
+.submit:hover{
+    text-decoration: underline;
+    color: rgb(114, 114, 114);
+}
+
+.div form{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}

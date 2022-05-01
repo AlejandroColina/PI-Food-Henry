@@ -1,17 +1,24 @@
 import React, { useEffect } from 'react';
 import styles from './styles.module.css';
 import Card from './Card/Card';
-import { getRecipes } from '../../redux/action';
+import { getRecipes, clearPage} from '../../redux/action';
 import { useDispatch, useSelector } from 'react-redux';
+import { filter } from './herramientas/filter';
 
 function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getRecipes())
+    return ()=>{
+      dispatch(clearPage())
+      console.log('dismount HOME')
+    }
   }, [dispatch]);
 
   const { allRecipes } = useSelector(state=>state);
+  let option = 'BAJOSPUNTAJES';  //option:  ASC, DESC, ALTASRECETAS, BAJASRECETAS, ALTOSPUNTAJES, BAJOSPUNTAJES
+  let obj = filter(allRecipes, option);  
 
   return (
     <main>
@@ -19,11 +26,10 @@ function Home() {
       <div className={styles.title}><h1>HENRY FOOD</h1></div>
 
       <div className={styles.container}>{
-        allRecipes?.flat()?.map((recipe) => {
+        obj?.flat()?.map((recipe) => {
           return (
-            <div className={'a'}>
+            <div className={'a'} key={recipe.id}>
               <Card
-              key={recipe.id}
               id={recipe.id}
               image={recipe.image}
               title={recipe.title}
