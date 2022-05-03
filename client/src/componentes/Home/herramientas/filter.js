@@ -1,5 +1,4 @@
-export function filter(allRecipes, option) { //option:  ASC, DESC, ALTASRECETAS, BAJASRECETAS, ALTOSPUNTAJES, BAJOSPUNTAJES
-    
+export function filter(allRecipes, option) { 
     switch (option) {
         case 'ASC':
             return allRecipes?.flat().sort((a, b) => {

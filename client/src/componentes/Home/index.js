@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './styles.module.css';
-import Card from './Card/Card';
-import { getRecipes, clearPage} from '../../redux/action';
+import Card from './Card/';
+import Pages from '../Paginated';
+import { getRecipes } from '../../redux/action';
 import { useDispatch, useSelector } from 'react-redux';
 import { filter } from './herramientas/filter';
 
@@ -9,16 +10,22 @@ function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getRecipes())
-    return ()=>{
-      dispatch(clearPage())
-      console.log('dismount HOME')
-    }
+    dispatch(getRecipes());
   }, [dispatch]);
 
-  const { allRecipes } = useSelector(state=>state);
-  let option = 'BAJOSPUNTAJES';  //option:  ASC, DESC, ALTASRECETAS, BAJASRECETAS, ALTOSPUNTAJES, BAJOSPUNTAJES
-  let obj = filter(allRecipes, option);  
+  const { allRecipes, ordered } = useSelector(state => state);
+  let obj = filter(allRecipes, ordered);
+
+  const [paginaActual, setPaginaActual] = useState(1);
+  const cantidadRecetas = 9; /*, setRecipesNumber] = useState(9);*/
+  const ultimoIndex = paginaActual * cantidadRecetas;
+  const inicioIndex = ultimoIndex - cantidadRecetas;
+
+  let toRender = obj?.flat()?.slice(inicioIndex, ultimoIndex);
+
+  const paginado = (pageNumber) => {
+    setPaginaActual(pageNumber)
+  }
 
   return (
     <main>
@@ -26,21 +33,27 @@ function Home() {
       <div className={styles.title}><h1>HENRY FOOD</h1></div>
 
       <div className={styles.container}>{
-        obj?.flat()?.map((recipe) => {
+        toRender.map((recipe) => {
           return (
             <div className={'a'} key={recipe.id}>
               <Card
-              id={recipe.id}
-              image={recipe.image}
-              title={recipe.title}
-              diets={recipe.diets}
-              healthScore={recipe.healthScore}
-              spoonacularScore={recipe.spoonacularScore}
-            />
+                id={recipe.id}
+                image={recipe.image}
+                title={recipe.title}
+                diets={recipe.diets}
+                healthScore={recipe.healthScore}
+                spoonacularScore={recipe.spoonacularScore}
+              />
             </div>
           )
         })
       }</div>
+      
+      <Pages
+        allRecipes={obj.flat().length}
+        elements={cantidadRecetas}
+        paginado={paginado}
+      />
 
     </main>
   )

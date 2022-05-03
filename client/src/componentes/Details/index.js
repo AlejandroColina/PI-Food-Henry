@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom';
-import { getDetail } from './../../redux/action';
+import { clearPage, getDetail } from './../../redux/action';
 import styles from './styles.module.css';
 
 function Details() {
@@ -9,6 +9,9 @@ function Details() {
   const { id } = useParams();
   useEffect(() => {
     dispatch(getDetail(id));
+    return ()=>{
+      dispatch(clearPage());
+    }
   }, [dispatch, id])
   const { details } = useSelector(state => state);
 

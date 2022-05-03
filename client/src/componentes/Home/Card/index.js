@@ -10,7 +10,7 @@ function Card(props) {
       <div className={styles.divInfo}>
 
         <div className={styles.divInfoOne}>
-          <Link to={`/detail/${props.id}`} ><h4>{props.title}</h4></Link>
+          <Link className={styles.link} to={`/detail/${props.id}`} ><h4>{props.title}</h4></Link>
           <p>Health score: {props.healthScore}</p>
           <p>Spoon score: {props.spoonacularScore}</p>
         </div>

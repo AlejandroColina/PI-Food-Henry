@@ -5,25 +5,49 @@ const router = Router();
 const { Op } = require('sequelize');
 const { findByAPI, dataApi } = require('../axios');
 router.use(express.json());
+const { rezetas } = require('../axios/rezetas');
 
 router.get('/recipes', async (req, res, next) => {
     try {
         const { name } = req.query;
         let recetas = await Receta.findAll({ include: [{ model: Dieta }] });
-        let consultaDataApi = await dataApi();
+        // let consultaDataApi = await dataApi();
+        
+        // if (consultaDataApi == undefined && recetas.length == 0) return res.status(404).send('--->  NOT API, NOT BD  <---');
 
-        if (consultaDataApi == undefined && recetas.length == 0) return res.status(404).send('--->  NOT API, NOT BD  <---');
+        // if (name != 'undefined' && recetas.length > 0) {
+        //     recetas = await Receta.findAll({ where: { title: { [Op.substring]: name } }, include: [{ model: Dieta }] });
+        //     consultaDataApi = consultaDataApi?.filter(e => e.title.toLowerCase().includes(name.toLowerCase()));
+        //     if (consultaDataApi.length) recetas.push(consultaDataApi);
+        //     return recetas.length > 0 ? res.status(200).json(recetas) : res.status(400).send('Esta receta no existe en la BD.');
+        // } else if (consultaDataApi !== 'undefined') {
+        //     consultaDataApi = consultaDataApi?.filter(e => e.title.toLowerCase().includes(name.toLowerCase()));
+        //     if (consultaDataApi.length) recetas.push(consultaDataApi)
+        //     return res.json(recetas);
+        // }
+//----------------------
 
-        if (name && recetas.length > 0) {
+        
+        if (rezetas == undefined && recetas.length == 0) return res.status(404).send('--->  NOT API, NOT BD  <---');
+        if (name != 'undefined' && recetas.length > 0) {
             recetas = await Receta.findAll({ where: { title: { [Op.substring]: name } }, include: [{ model: Dieta }] });
-            consultaDataApi = consultaDataApi?.filter(e => e.title.includes(name));
-            if (consultaDataApi.length) recetas.push(consultaDataApi);
+            let rrezetas = rezetas?.filter(e => e.title.toLowerCase().includes(name.toLowerCase()));
+            if (rrezetas.length) recetas.push(rrezetas);
             return recetas.length > 0 ? res.status(200).json(recetas) : res.status(400).send('Esta receta no existe en la BD.');
-        } else if (consultaDataApi !== 'undefined') {
-            if (consultaDataApi.length) recetas.push(consultaDataApi)
+        } else if (rezetas !== 'undefined') {
+            let rrezetas = rezetas?.filter(e => e.title.toLowerCase().includes(name.toLowerCase()));
+            if (rrezetas.length) recetas.push(rrezetas)
             return res.json(recetas);
         }
 
+
+
+//---------------------
+
+        
+
+
+        
     } catch (error) {
         next(error);
     }
@@ -31,6 +55,7 @@ router.get('/recipes', async (req, res, next) => {
 
 router.get('/types', async (req, res, next) => {
     try {
+
         let listadoDietas = await Dieta.findAll();
         if (!listadoDietas.length) return res.status(404).send({ msg: 'Sin dietas en la base de datos' });
         return res.json(listadoDietas);
@@ -51,9 +76,9 @@ router.post('/recipe', async (req, res, next) => {
         if (typeof title == 'string') {
             let receta = await Receta.create({
                 idReceta: idReceta.toUpperCase(),
-                title : title.toLowerCase(),
-                summary : summary.toLowerCase(),
-                steps : steps.toLowerCase(),
+                title: title.toLowerCase(),
+                summary: summary.toLowerCase(),
+                steps: steps.toLowerCase(),
                 spoonacularScore,
                 healthScore,
             });

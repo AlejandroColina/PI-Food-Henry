@@ -1,8 +1,9 @@
-import { DETAILS, ALLRECIPES, CLEARPAGE } from './types';
+import { DETAILS, ALLRECIPES, CLEARPAGE, ORDER } from './types';
 
 const initialState = {
     details: [],
-    allRecipes: []
+    allRecipes: [],
+    ordered : ''
 };
 
 export function reducer(state = initialState, { type, payload }) {
@@ -22,7 +23,13 @@ export function reducer(state = initialState, { type, payload }) {
             return {
                 ...state,
                 allRecipes : []
-            }    
+            } 
+        
+        case ORDER:
+            return {
+                ...state,
+                ordered : payload
+            }
 
         default: return state
     }

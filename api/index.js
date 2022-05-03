@@ -3,6 +3,7 @@ const { conn } = require('./src/db.js');
 const { Receta, Dieta } = require('./src/db')
 const { dataApi } = require('./src/axios');
 const { closeSync } = require('fs');
+const { rezetas } = require('./src/axios/rezetas');
 // Syncing all the models at once.
 conn.sync({ force: true })
   .then(() => {
@@ -43,11 +44,13 @@ conn.sync({ force: true })
       // let Dieta3 = await Dieta.create({
       //   title : 'frutas',
       // });
+      
+      const response = rezetas;
       let p = 0;
       while (p == 0) {
         ++p;
         let dietas = [];
-        const response = await dataApi()
+        // const response = await dataApi()
         response?.map(e => dietas.push(e.diets));
         dietas = [...new Set(dietas.flat())]?.map(e => Dieta.create({ title: e }));
         return await Promise.all(dietas)
