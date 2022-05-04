@@ -1,4 +1,6 @@
 const axios = require('axios');
+const { Dieta } = require('../db');
+const { rezetas } = require('../axios/rezetas');
 
 async function dataApi() {
     try {
@@ -34,6 +36,24 @@ async function findByAPI(id) {
         console.error(`Could not get product ID ${error}`)
     }
 }
+
+(async () => {
+    try {
+        let diets = [];
+        const response = await dataApi();
+        response?.map(res => diets.push(res.diets));
+        diets = [...new Set(diets.flat())]?.map(diet => {
+            Dieta.findOrCreate({
+                where: { title: diet },
+                defaults: { title: diet }
+            })
+        })
+        return await Promise.all(diets);
+    } catch (error) {
+        console.error(error)
+    }
+})()
+
 
 module.exports = {
     dataApi,

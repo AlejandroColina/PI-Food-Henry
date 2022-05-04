@@ -11,7 +11,7 @@ module.exports = (sequelize) => {
   // });
   
   const Receta = sequelize.define('Receta', {
-    idReceta: {
+    id: {
       type: DataTypes.STRING,
       primaryKey: true
     },

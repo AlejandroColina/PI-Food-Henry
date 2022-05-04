@@ -25,7 +25,7 @@ function Search() {
         <div className={styles.div}>
             <form onSubmit={handleSubmit}>
                 <div className={styles.inputSearch} >
-                    <input type='text' onChange={handleChange} placeholder='   Search a recipe...' />   🔎
+                    <input className={styles.inputSearchT} type='text' onChange={handleChange} placeholder='   Search a recipe...' />   🔎
                 </div>
                 {/* <input type='submit' value='SEARCH' className={styles.submit} /> */}
             </form>

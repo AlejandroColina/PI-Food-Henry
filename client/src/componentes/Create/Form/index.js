@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-// import axios from 'axios';
 import styles from './styles.module.css';
 import Diets from '../Diets';
+import axios from 'axios';
 
 function Form() {
 
@@ -17,14 +17,17 @@ function Form() {
   //   console.log(input.title)
   //   console.log(input.steps)
   //   console.log(input.summary)
-  //   console.log(input.spoonacularScore)
-  //   console.log(input.healthScore)  
-  
+    console.log(typeof input.spoonacularScore)
+    console.log(typeof input.healthScore)  
+
   const handleChange = (e) => {
+    let {name, value} = e.target;
     setInput(() => {
       const review = {
         ...input,
-        [e.target.name]: e.target.value
+        [name] : name === 'spoonacularScore' || name === 'healthScore'
+        ? parseInt(value)
+        : value
       }
       return review
     });
@@ -32,45 +35,37 @@ function Form() {
 
   const onPressButton = (e) => {
     e.preventDefault()
-
-    // axios.post('http://localhost:3001/recipe', {
-    //   "title": input.title,
-    //   "steps": input.steps,
-    //   "summary": input.summary,
-    //   "spoonacularScore": input.spoonacularScore,
-    //   "healthScore": input.healthScore,
-    //   "diets": input.diets
-    // }
-    // )
-    //   .then(res => console.log(res.data))
+  axios.post('http://localhost:3001/recipe', input)
+      .then(res => console.log(res))
+      .catch(err=>console.log(err))
   }
   return (
-    <form onSubmit={onPressButton}>
+    <form className={styles.formRecipe} onSubmit={onPressButton}>
       <div className={styles.generalityOne}>
         <div className={styles.divUnoForm}>
           <div className={styles.prueba}>
             <label htmlFor='title'>Ingresa un nombre para la receta</label>
-            <input onChange={handleChange} type='text' name='title' placeholder='title...' />
+            <input className={styles.inputForm}  onChange={handleChange} type='text' name='title' placeholder='title...' />
           </div>
 
           <div className={styles.prueba}>
             <label htmlFor='steps'>Paso a paso</label>
-            <input onChange={handleChange} type='textarea' name='steps' placeholder='steps...' />
+            <input className={styles.inputForm}  onChange={handleChange} type='textarea' name='steps' placeholder='steps...' />
           </div>
 
           <div className={styles.prueba}>
             <label htmlFor='summary'>Resumen de la receta</label>
-            <input onChange={handleChange} type='textarea' name='summary' placeholder='summary...' />
+            <input className={styles.inputForm}  onChange={handleChange} type='textarea' name='summary' placeholder='summary...' />
           </div>
 
           <div className={styles.prueba}>
             <label htmlFor='spoonacularScore'>Puntaje para spoonacular</label>
-            <input onChange={handleChange} type='number' name='spoonacularScore' placeholder='Score 0 -100...' />
+            <input className={styles.inputForm}  onChange={handleChange}type='number' name='spoonacularScore' placeholder='Score 0 -100...' />
           </div>
 
           <div className={styles.prueba}>
             <label htmlFor='healthScore'>Puntaje personal</label>
-            <input onChange={handleChange} type='number' name='healthScore' placeholder='Score 0 -100...' />
+            <input className={styles.inputForm} onChange={handleChange} type='number' name='healthScore' placeholder='Score 0 -100...' />
           </div>
         </div>
 
@@ -88,3 +83,14 @@ function Form() {
 }
 
 export default Form
+
+// axios.get('http://localhost:3001/recipes', {
+    //   "title": input.title,
+    //   "steps": input.steps,
+    //   "summary": input.summary,
+    //   "spoonacularScore": input.spoonacularScore,
+    //   "healthScore": input.healthScore,
+    //   "diets": input.diets
+    // }
+    // )
+    //   .then(res => console.log(res.data))

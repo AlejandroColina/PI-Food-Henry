@@ -1,4 +1,4 @@
-form {
+.formRecipe {
     box-shadow: 0 0 2px 2px #5b3a29 inset;
     border-radius: 4px;
     width: 950px;
@@ -62,9 +62,7 @@ label {
     font-style: oblique;
 }
 
-input[type=text],
-input[type=textarea],
-input[type=number] {
+.inputForm{
     width: 400px;
     height: 30px;
     background-color: rgba(160, 160, 160, 0.411);
@@ -73,9 +71,7 @@ input[type=number] {
     margin: 0 auto;
 }
 
-input[type=text],
-input[type=textarea],
-input[type=number]:hover {
+.inputFormhover {
     outline: none;
     font-style: oblique;
 }

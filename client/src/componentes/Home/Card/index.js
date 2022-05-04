@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from './styles.module.css';
 import { Link } from 'react-router-dom';
-
+import photo from '.././media/photo.png';
 function Card(props) {
   return (
     <div key={props.id} className={styles.container}>
-      <img src={props.image} alt={props.title}/>
+      <img src={props.image?props.image:photo} alt={props.title}/>
 
       <div className={styles.divInfo}>
 

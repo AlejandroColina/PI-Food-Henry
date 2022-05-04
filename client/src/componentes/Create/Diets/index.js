@@ -26,7 +26,7 @@ function Diets() {
     }
 
     return (
-        <div>
+        <div className={styles.allCheckbox}>
             <ul>{
                 diets.map((diet) => {
                     return (
