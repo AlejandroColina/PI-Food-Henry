@@ -1,9 +1,11 @@
-import { DETAILS, ALLRECIPES, CLEARPAGE, ORDER } from './types';
+import { DETAILS, ALLRECIPES, CLEARPAGE, ORDER, DIETS, TYPES_DIETS_OF_RECITE } from './types';
 
 const initialState = {
     details: [],
     allRecipes: [],
-    ordered : ''
+    diets: [],
+    types_diets_of_recite: [],
+    ordered: ''
 };
 
 export function reducer(state = initialState, { type, payload }) {
@@ -22,15 +24,27 @@ export function reducer(state = initialState, { type, payload }) {
         case CLEARPAGE:
             return {
                 ...state,
-                allRecipes : []
-            } 
-        
+                allRecipes: []
+            }
+
         case ORDER:
             return {
                 ...state,
-                ordered : payload
+                ordered: payload
             }
 
+        case DIETS:
+            return {
+                ...state,
+                diets: payload
+            }
+
+        case TYPES_DIETS_OF_RECITE:
+            return {
+                ...state,
+                types_diets_of_recite: payload
+            }
+            
         default: return state
     }
 };

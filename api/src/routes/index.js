@@ -7,6 +7,15 @@ const { findByAPI, dataApi } = require('../axios');
 router.use(express.json());
 const { rezetas } = require('../axios/rezetas');
 
+function ids(){
+    let x =1;
+    return function(){
+        return x++
+    }
+}
+
+var alejo = ids();
+
 router.get('/recipes', async (req, res, next) => {
     try {
         const { name } = req.query;
@@ -66,16 +75,17 @@ router.get('/types', async (req, res, next) => {
 
 router.post('/recipe', async (req, res, next) => {
     try {
+        
         let hayDietas = await Dieta.findAll();
         if (hayDietas.length == 0) return res.status(404).send('No hay dietas desde la API para relacionar la receta.')
 
-        const { idReceta, title, summary, spoonacularScore, healthScore, steps, dietas } = req.body;
+        const { title, summary, spoonacularScore, healthScore, steps, dietas } = req.body;
 
         if (!title || !summary || !dietas) return res.status(404).send('Faltan datos mínimos para la creación de la receta.');
         if (typeof spoonacularScore != 'number' || typeof healthScore != 'number') return res.status(404).send('Puntuación y nivelSaludable deben ser números.');
         if (typeof title == 'string') {
             let receta = await Receta.create({
-                idReceta: idReceta.toUpperCase(),
+                idReceta: `${alejo()}PI`,
                 title: title.toLowerCase(),
                 summary: summary.toLowerCase(),
                 steps: steps.toLowerCase(),
@@ -83,7 +93,7 @@ router.post('/recipe', async (req, res, next) => {
                 healthScore,
             });
             dietas?.map(async dieta => await receta.setDieta(dieta));
-            return res.send('OK')
+            return res.json('OK')
         }
         return res.status(404).send('El nombre debe ser String.')
     } catch (error) {

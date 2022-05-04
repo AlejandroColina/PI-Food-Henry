@@ -1,5 +1,5 @@
 import axios from "axios";
-import { DETAILS, ALLRECIPES, CLEARPAGE, ORDER} from "./types";
+import { DETAILS, ALLRECIPES, CLEARPAGE, ORDER, DIETS, TYPES_DIETS_OF_RECITE } from "./types";
 
 export function getDetail(id) {
     return async function (dispatch) {
@@ -14,17 +14,17 @@ export function getDetail(id) {
 };
 
 export function getRecipes(name) {
-    if(name){
+    if (name) {
         return async function (dispatch) {
             try {
-                return axios.get('http://localhost:3001/recipes?name='+ name)
+                return axios.get('http://localhost:3001/recipes?name=' + name)
                     .then((res) => { dispatch({ type: ALLRECIPES, payload: res.data }) })
                     .catch((err) => console.log(err))
             } catch (error) {
                 console.log(error)
             }
         }
-    }else{
+    } else {
         return async function (dispatch) {
             try {
                 return axios.get('http://localhost:3001/recipes?name=')
@@ -37,14 +37,33 @@ export function getRecipes(name) {
     }
 }
 
-export function order(x){
+export function getDiets() {
+    return async function (dispatch) {
+        try {
+            return axios.get('http://localhost:3001/types')
+                .then(res => { dispatch({ type: DIETS, payload: res.data }) })
+                .catch(err => console.log(err))
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+export function setDietsStore (diets){
+    return {
+        type: TYPES_DIETS_OF_RECITE,
+        payload: diets
+    }
+}
+
+export function order(x) {
     return {
         type: ORDER,
         payload: x
     }
 }
 
-export function clearPage(){
+export function clearPage() {
     return {
         type: CLEARPAGE
     }
