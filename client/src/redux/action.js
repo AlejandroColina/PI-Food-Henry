@@ -49,10 +49,30 @@ export function getDiets() {
     }
 }
 
-export function setDietsStore (diets){
+export function setDietsStore(diets) {
     return {
         type: TYPES_DIETS_OF_RECITE,
         payload: diets
+    }
+}
+
+export function sentApost(payload) {
+    return async function (dispatch) {
+        try {
+            // let res = await axios.post('http://localhost:3001/recipe', payload)
+            // return res
+
+            axios.post('http://localhost:3001/recipe', payload)
+                .then(res => {
+                    if (res.status === 200) alert(res.data)
+                })
+                .catch(err => {
+                    if (err.response.status !== 200) alert(`PROBLEMA CON LA INFORMACIÓN: ${err.response.data}`)
+                })
+
+        } catch (error) {
+            console.log(error)
+        }
     }
 }
 

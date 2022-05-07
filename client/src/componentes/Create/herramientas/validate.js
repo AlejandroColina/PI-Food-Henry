@@ -1,39 +1,32 @@
 export default function validate(input) {
-    let errors = {};
-    if (!input.title) {
-        errors.title = 'The title is required';
-    } else if (/\d{5}/.test(input.title)) {
-        errors.title = 'The title exceeds the num limits.';
+    let error = {};
+
+    if (!input?.title.trim()) {
+        error.title = 'La receta debe tener título.';
+    } else if (/\d{5}/g.test(input?.title)) {
+        error.title = 'El título no puede llevar 5 números seguidos.';
     }
 
-    if (!input.steps) {
-        errors.steps = 'The steps is required';
-    } else if (/\d{5}/.test(input.steps)) {
-        errors.steps = 'The steps exceeds the num limits.';
+    if (!input?.summary.trim()) {
+        error.summary = 'La receta debe tener summary.';
+    } else if (/\d{5}/g.test(input?.summary)) {
+        error.summary = 'El summary no puede llevar 5 números seguidos.';
     }
 
-    if (!input.summary) {
-        errors.summary = 'The summary is required';
-    } else if (/\d{5}/.test(input.summary)) {
-        errors.summary = 'The summary exceeds the num limits.';
+    if (/\d{5}/g.test(input?.steps)) error.steps = 'El paso a paso no puede llevar 5 números seguidos';
+
+    if (!/^(-?)\d+$/.test(input?.spoonacularScore)) {
+        error.spoonacularScore = 'SpoonacularScore debe ser un número.'
+    } else if (input?.spoonacularScore < 0 || input?.spoonacularScore > 100) {
+        error.spoonacularScore = 'spoonacularScore debe ser entre 0 y 100 puntos.'
     }
 
-    if (!input.spoonacularScore) {
-        errors.spoonacularScore = 'The spoonacularScore is required';
-    } else if (!/\d/.test(input.spoonacularScore)) {
-        errors.spoonacularScore = 'The spoonacularScore must be a num.';
+    if (!/^(-?)\d+$/.test(input?.healthScore)) {
+        error.healthScore = 'healthScore debe ser un número.'
+    } else if (input?.healthScore < 0 || input?.healthScore > 100) {
+        error.healthScore = 'healthScore debe ser entre 0 y 100 puntos.'
     }
 
-    if (!input.healthScore) {
-        errors.healthScore = 'The healthScore is required';
-    } else if (!/\d/.test(input.healthScore)) {
-        errors.healthScore = 'The healthScore must be a num.';
-    }
+    return error
 
-    if (!input.diets.length) {
-        errors.diets = 'error';
-    } else if (!/(?=.*[0-9])/.test(input.password)) {
-        errors.password = 'Password is invalid';
-    }
-    return errors
 };

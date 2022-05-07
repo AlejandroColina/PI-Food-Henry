@@ -56,3 +56,28 @@
     align-items: center;
     justify-content: center;
 }
+
+.navbar {
+    overflow: hidden;
+    width: 100vw;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: space-evenly;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+}
+
+.link {
+    color: var(--words-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.link:hover {
+    text-decoration: underline;
+    color: var(--words-hover);
+}

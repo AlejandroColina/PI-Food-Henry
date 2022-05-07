@@ -1,0 +1,33 @@
+.notFound{
+    height: 100vh;
+    width: 100vw;
+    background-image: url('../Home/media/4042.gif');
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.intro{
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    background-color: rgba(168, 214, 255, 0.479);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+}
+
+.intro:hover{
+    backdrop-filter: blur(15px);
+    color: rgb(15, 125, 133);
+}
+
+.linkError{
+    text-decoration: none;
+    color: white;
+}

@@ -13,6 +13,7 @@ function Diets() {
     }, [dispatch, checks]);
 
     const { diets } = useSelector(state => state);
+    
     const onChangeCheck = (e) => {
         setChecks(() => {
             let val = e.target.value

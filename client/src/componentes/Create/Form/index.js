@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import styles from './styles.module.css';
 import Diets from '../Diets';
-import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import validate from '../herramientas/validate';
+import { sentApost } from '../../../redux/action';
+// import axios from 'axios';
 
 function Form() {
+  let dispatch = useDispatch()
 
   const [input, setInput] = useState({
     title: '',
@@ -11,86 +15,145 @@ function Form() {
     summary: '',
     spoonacularScore: 0,
     healthScore: 0,
-    diets: [1]
+    diets: []
   });
 
-  //   console.log(input.title)
-  //   console.log(input.steps)
-  //   console.log(input.summary)
-    console.log(typeof input.spoonacularScore)
-    console.log(typeof input.healthScore)  
+  const [errors, setError] = useState({
+    title: '',
+    steps: '',
+    summary: '',
+    spoonacularScore: '',
+    healthScore: '',
+    diets: ''
+  });
+
+  let fails = Object.keys(errors).length;
+
+  const { types_diets_of_recite } = useSelector(state => state);
+  input.diets = types_diets_of_recite
 
   const handleChange = (e) => {
-    let {name, value} = e.target;
-    setInput(() => {
-      const review = {
-        ...input,
-        [name] : name === 'spoonacularScore' || name === 'healthScore'
-        ? parseInt(value)
-        : value
+
+    let { name, value } = e.target;
+    value = value.trim()
+
+    setInput((prevState) => {
+      let newState = {
+        ...prevState,
+        [name]: name === 'spoonacularScore' || name === 'healthScore'
+          ? !isNaN(parseInt(value)) ? parseInt(value) : value = ''
+          : value
       }
-      return review
-    });
+      setError(validate(newState));
+      return newState;
+    })
+
   }
 
   const onPressButton = (e) => {
     e.preventDefault()
-  axios.post('http://localhost:3001/recipe', input)
-      .then(res => console.log(res))
-      .catch(err=>console.log(err))
+    
+    dispatch(sentApost(input))
+
+    setInput({
+      title: '',
+      steps: '',
+      summary: '',
+      spoonacularScore: 0,
+      healthScore: 0,
+      diets: []
+    })
   }
+
+  const onErrors = (e) => {
+    e.preventDefault();
+    alert('Debes solucionar los errores')
+  }
+
   return (
-    <form className={styles.formRecipe} onSubmit={onPressButton}>
-      <div className={styles.generalityOne}>
-        <div className={styles.divUnoForm}>
+    <form className={styles.formRecipe} onSubmit={fails ? onErrors : onPressButton}>
+      <section className={styles.generalityOne}>
+        <section className={styles.divUnoForm}>
           <div className={styles.prueba}>
-            <label htmlFor='title'>Ingresa un nombre para la receta</label>
-            <input className={styles.inputForm}  onChange={handleChange} type='text' name='title' placeholder='title...' />
+            <label htmlFor='title'>Nombre de la receta *</label>
+            <input
+              className={styles.inputForm}
+              onChange={handleChange}
+              type='text'
+              value={input.title}
+              name='title'
+              placeholder='title...'
+            />
+            <p className={styles.soyerror} >{errors?.title}</p>
           </div>
 
           <div className={styles.prueba}>
             <label htmlFor='steps'>Paso a paso</label>
-            <input className={styles.inputForm}  onChange={handleChange} type='textarea' name='steps' placeholder='steps...' />
+            <input
+              className={styles.inputForm}
+              onChange={handleChange}
+              type='textarea'
+              value={input.steps}
+              name='steps'
+              placeholder='steps...'
+            />
+            <p className={styles.soyerror} >{errors?.steps}</p>
           </div>
 
           <div className={styles.prueba}>
-            <label htmlFor='summary'>Resumen de la receta</label>
-            <input className={styles.inputForm}  onChange={handleChange} type='textarea' name='summary' placeholder='summary...' />
+            <label htmlFor='summary'>Resumen de la receta *</label>
+            <input
+              className={styles.inputForm}
+              onChange={handleChange}
+              type='textarea'
+              value={input.summary}
+              name='summary'
+              placeholder='summary...'
+            />
+            <p className={styles.soyerror} >{errors?.summary}</p>
           </div>
 
           <div className={styles.prueba}>
             <label htmlFor='spoonacularScore'>Puntaje para spoonacular</label>
-            <input className={styles.inputForm}  onChange={handleChange}type='number' name='spoonacularScore' placeholder='Score 0 -100...' />
+            <input
+              className={styles.inputForm}
+              onChange={handleChange}
+              type='number'
+              value={input.spoonacularScore}
+              name='spoonacularScore'
+              placeholder='Score 0 - 100...'
+            />
+            <p className={styles.soyerror} >{errors?.spoonacularScore}</p>
           </div>
 
           <div className={styles.prueba}>
             <label htmlFor='healthScore'>Puntaje personal</label>
-            <input className={styles.inputForm} onChange={handleChange} type='number' name='healthScore' placeholder='Score 0 -100...' />
+            <input
+              className={styles.inputForm}
+              onChange={handleChange}
+              type='number'
+              value={input.healthScore}
+              name='healthScore'
+              placeholder='Score 0 - 100...'
+            />
+            <p className={styles.soyerror} >{errors?.healthScore}</p>
           </div>
-        </div>
+        </section>
 
         <div className={styles.divDosForm}>
           <h3 htmlFor='dietas'>Dietas de la receta</h3>
           <Diets />
         </div>
 
-      </div>
-      <div className={styles.generalityTwo}>
-        <input type='submit' value='GENERAR' />
+      </section>
+      <div className={fails > 0 ? styles.nones : styles.generalityTwo}>
+        <input
+          type='submit'
+          value='GENERAR'
+        />
       </div>
     </form>
   )
 }
 
 export default Form
-
-// axios.get('http://localhost:3001/recipes', {
-    //   "title": input.title,
-    //   "steps": input.steps,
-    //   "summary": input.summary,
-    //   "spoonacularScore": input.spoonacularScore,
-    //   "healthScore": input.healthScore,
-    //   "diets": input.diets
-    // }
-    // )
-    //   .then(res => console.log(res.data))

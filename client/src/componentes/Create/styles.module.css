@@ -9,7 +9,7 @@
     background-attachment: fixed;
     background-size: cover;
     max-width: 100vw;
-    min-height: 640px;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -29,3 +29,27 @@
     align-items: center;
 }
 
+.navbar {
+    overflow: hidden;
+    width: 100vw;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+}
+
+.link {
+    color: var(--words-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.link:hover {
+    text-decoration: underline;
+    color: var(--words-hover);
+}

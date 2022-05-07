@@ -29,7 +29,6 @@ function Home() {
 
   return (
     <main>
-
       <div className={styles.title}><h1>HENRY FOOD</h1></div>
 
       <div className={styles.container}>{
@@ -48,7 +47,7 @@ function Home() {
           )
         })
       }</div>
-      
+
       <Pages
         allRecipes={obj.flat().length}
         elements={cantidadRecetas}

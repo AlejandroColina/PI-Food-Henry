@@ -1,0 +1,14 @@
+select {
+    background-color: var(--bg-color);
+    color: var(--words-color);
+    font-weight: bold;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    appearance: none;
+}
+
+select:hover {
+    text-decoration: underline;
+    color: var(--words-hover);
+}

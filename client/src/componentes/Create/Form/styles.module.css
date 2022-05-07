@@ -55,7 +55,7 @@ input[type="checkbox"]:checked {
 label {
     display: inline-block;
     justify-content: center;
-    width: 250px;
+    width: 200px;
     height: 35px;
     margin-top: 8px;
     font-weight: bold;
@@ -95,4 +95,14 @@ input[type=submit]:hover {
 .inline {
     display: inline;
     border: 1px solid pink;
+}
+
+.nones{
+    display: none;
+}
+
+.soyerror{
+    text-align: right;
+    color: red;
+    margin: 0px;
 }

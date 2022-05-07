@@ -4,8 +4,8 @@ import styles from './style.module.css';
 
 function Error() {
   return (
-    <div className={styles.container}>
-      <h1>Page not found. <Link to='/'>Go to initial page</Link></h1>
+    <div className={styles.notFound}>
+      <Link className={styles.linkError} to='/'><h1 className={styles.intro} >Go to initial page</h1></Link>
     </div>
   )
 }

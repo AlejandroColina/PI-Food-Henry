@@ -1,4 +1,4 @@
-import { DETAILS, ALLRECIPES, CLEARPAGE, ORDER, DIETS, TYPES_DIETS_OF_RECITE } from './types';
+import { DETAILS, ALLRECIPES, CLEARPAGE, ORDER, DIETS, TYPES_DIETS_OF_RECITE, POST } from './types';
 
 const initialState = {
     details: [],
@@ -44,7 +44,12 @@ export function reducer(state = initialState, { type, payload }) {
                 ...state,
                 types_diets_of_recite: payload
             }
-            
+
+        case POST:
+        return {
+            ...state
+        }
+
         default: return state
     }
 };
