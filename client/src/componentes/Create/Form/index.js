@@ -4,11 +4,11 @@ import Diets from '../Diets';
 import { useSelector, useDispatch } from 'react-redux';
 import validate from '../herramientas/validate';
 import { sentApost } from '../../../redux/action';
-// import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 function Form() {
   let dispatch = useDispatch()
-
+  let location = useHistory()
   const [input, setInput] = useState({
     title: '',
     steps: '',
@@ -35,7 +35,6 @@ function Form() {
   const handleChange = (e) => {
 
     let { name, value } = e.target;
-    value = value.trim()
 
     setInput((prevState) => {
       let newState = {
@@ -52,9 +51,8 @@ function Form() {
 
   const onPressButton = (e) => {
     e.preventDefault()
-    
     dispatch(sentApost(input))
-
+    location.push('/home')
     setInput({
       title: '',
       steps: '',
@@ -148,6 +146,7 @@ function Form() {
       </section>
       <div className={fails > 0 ? styles.nones : styles.generalityTwo}>
         <input
+        className={styles.btnSubmit}
           type='submit'
           value='GENERAR'
         />

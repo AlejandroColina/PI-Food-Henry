@@ -10,6 +10,7 @@ function Diets() {
     useEffect(() => {
         dispatch(getDiets());
         dispatch(setDietsStore(checks))
+        
     }, [dispatch, checks]);
 
     const { diets } = useSelector(state => state);

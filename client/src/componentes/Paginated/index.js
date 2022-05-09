@@ -14,7 +14,7 @@ function Pages(props) {
                 posiblePages.map((e) => {
                     return (
                         <li className={styles.num} key={e}>
-                            <button onClick={() => { props.paginado(e) }}>
+                            <button onClick={() => {  props.paginado(e)}}>
                                 {e}
                             </button>
                         </li>

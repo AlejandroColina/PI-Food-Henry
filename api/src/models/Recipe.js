@@ -1,8 +1,8 @@
-const { DataTypes, UUIDV4 } = require('sequelize');
+const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-  
-  const Receta = sequelize.define('Receta', {
+
+  const Recipe = sequelize.define('Recipe', {
     id: {
       type: DataTypes.STRING,
       primaryKey: true
@@ -37,11 +37,4 @@ module.exports = (sequelize) => {
     timestamps: false
   });
 
-  const Dieta = sequelize.define('Dieta', {
-    title: {
-      type: DataTypes.STRING,
-    }
-  }, {
-    timestamps: false
-  });
 };

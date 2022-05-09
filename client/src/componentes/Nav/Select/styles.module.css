@@ -1,4 +1,5 @@
 select {
+    width: 140px;
     background-color: var(--bg-color);
     color: var(--words-color);
     font-weight: bold;

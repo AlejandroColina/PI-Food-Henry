@@ -1,7 +1,7 @@
 .notFound{
     height: 100vh;
     width: 100vw;
-    background-image: url('../Home/media/4042.gif');
+    background-image: url('../Home/media/not-found.gif');
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
@@ -12,9 +12,10 @@
 
 .intro{
     width: 200px;
-    height: 200px;
-    border-radius: 100%;
-    background-color: rgba(168, 214, 255, 0.479);
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid rgba(168, 214, 255, 0.479);
+    background-color: black;
     backdrop-filter: blur(8px);
     display: flex;
     justify-content: center;
@@ -24,7 +25,7 @@
 
 .intro:hover{
     backdrop-filter: blur(15px);
-    color: rgb(15, 125, 133);
+    color: rgba(168, 214, 255, 0.479);
 }
 
 .linkError{

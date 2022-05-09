@@ -1,5 +1,5 @@
 import axios from "axios";
-import { DETAILS, ALLRECIPES, CLEARPAGE, ORDER, DIETS, TYPES_DIETS_OF_RECITE } from "./types";
+import { DETAILS, ALLRECIPES, CLEAR_RECIPES, CLEAR_DETAILS, ORDER, DIETS, TYPES_DIETS_OF_RECITE } from "./types";
 
 export function getDetail(id) {
     return async function (dispatch) {
@@ -19,7 +19,9 @@ export function getRecipes(name) {
             try {
                 return axios.get('http://localhost:3001/recipes?name=' + name)
                     .then((res) => { dispatch({ type: ALLRECIPES, payload: res.data }) })
-                    .catch((err) => console.log(err))
+                    .catch(err => {
+                        if (err.response.status !== 200) alert(`PROBLEMA CON LA BÚSQUEDA: ${err.response.data}`)
+                    })
             } catch (error) {
                 console.log(error)
             }
@@ -27,7 +29,7 @@ export function getRecipes(name) {
     } else {
         return async function (dispatch) {
             try {
-                return axios.get('http://localhost:3001/recipes?name=')
+                return axios.get('http://localhost:3001/recipes')
                     .then((res) => { dispatch({ type: ALLRECIPES, payload: res.data }) })
                     .catch((err) => console.log(err))
             } catch (error) {
@@ -59,8 +61,6 @@ export function setDietsStore(diets) {
 export function sentApost(payload) {
     return async function (dispatch) {
         try {
-            // let res = await axios.post('http://localhost:3001/recipe', payload)
-            // return res
 
             axios.post('http://localhost:3001/recipe', payload)
                 .then(res => {
@@ -85,6 +85,12 @@ export function order(x) {
 
 export function clearPage() {
     return {
-        type: CLEARPAGE
+        type: CLEAR_RECIPES
+    }
+}
+
+export function clearDetails(){
+    return {
+        type: CLEAR_DETAILS
     }
 }

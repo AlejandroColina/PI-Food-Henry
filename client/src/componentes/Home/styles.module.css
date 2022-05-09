@@ -4,7 +4,7 @@
 }
 
 main {
-    background-image: url('./media/pizzaImg.jpg');
+    background-image: url('./media/table.jpg');
     background-attachment: fixed;
     width: 100%;
     min-height: 640px;
@@ -13,22 +13,44 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
-.title{
-    width: 90%;
-    height: 150px;
+.title {
+    width: 50%;
+    height: 100px;
     display: flex;
     text-align: center;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+    position: relative;
+    top: 35px;
 }
 
-.container{
+.container {
     margin-top: 20px;
     width: 80%;
     height: auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+}
+
+.henry {
+    margin: 10px;
+    height: auto;
+    animation: flujo 40s alternate running infinite;    
+    color: white;
+    font-family: 'Playball', cursive;;
+}
+
+@keyframes flujo {
+    from {
+        transform: translateX(500px);
+    }
+
+    to {
+        transform: translateX(-500px);
+    }
 }

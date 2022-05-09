@@ -1,13 +1,13 @@
 const express = require('express');
-const routes = require('./routes/index.js');
+const recipe = require('./routes/recipe.js');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const types = require('./routes/types');
+const recipes = require('./routes/recipes');
 
 require('./db.js');
-
 const server = express();
-
 server.name = 'API';
 
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
@@ -22,7 +22,10 @@ server.use((req, res, next) => {
   next();
 });
 
-server.use('/', routes);
+server.use('/types', types);
+server.use('/recipe', recipe);
+server.use('/recipes', recipes);
+
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   const status = err.status || 500;
