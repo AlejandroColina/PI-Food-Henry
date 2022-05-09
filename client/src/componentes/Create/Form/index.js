@@ -73,7 +73,7 @@ function Form() {
       <section className={styles.generalityOne}>
         <section className={styles.divUnoForm}>
           <div className={styles.prueba}>
-            <label htmlFor='title'>Nombre de la receta *</label>
+            <label htmlFor='title'>A title for the recipe *</label>
             <input
               className={styles.inputForm}
               onChange={handleChange}
@@ -86,7 +86,7 @@ function Form() {
           </div>
 
           <div className={styles.prueba}>
-            <label htmlFor='steps'>Paso a paso</label>
+            <label htmlFor='steps'>Steps</label>
             <input
               className={styles.inputForm}
               onChange={handleChange}
@@ -99,7 +99,7 @@ function Form() {
           </div>
 
           <div className={styles.prueba}>
-            <label htmlFor='summary'>Resumen de la receta *</label>
+            <label htmlFor='summary'>Summary to the recipe *</label>
             <input
               className={styles.inputForm}
               onChange={handleChange}
@@ -112,7 +112,7 @@ function Form() {
           </div>
 
           <div className={styles.prueba}>
-            <label htmlFor='spoonacularScore'>Puntaje para spoonacular</label>
+            <label htmlFor='spoonacularScore'>Personal score</label>
             <input
               className={styles.inputForm}
               onChange={handleChange}
@@ -125,7 +125,7 @@ function Form() {
           </div>
 
           <div className={styles.prueba}>
-            <label htmlFor='healthScore'>Puntaje personal</label>
+            <label htmlFor='healthScore'>Healthy score</label>
             <input
               className={styles.inputForm}
               onChange={handleChange}
@@ -139,7 +139,7 @@ function Form() {
         </section>
 
         <div className={styles.divDosForm}>
-          <h3 htmlFor='dietas'>Dietas de la receta</h3>
+          <h3 htmlFor='dietas'>Diets for the recipe</h3>
           <Diets />
         </div>
 

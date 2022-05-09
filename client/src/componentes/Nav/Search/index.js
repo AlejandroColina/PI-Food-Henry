@@ -30,7 +30,7 @@ function Search() {
                         placeholder='   Search a recipe...'
                     />   🔎
                 </div>
-                <input className={styles.submit} type='submit' value='GESTIONAR'/>
+                <input className={styles.submit} type='submit' value='SEARCH'/>
             </form>
         </div>
     )
