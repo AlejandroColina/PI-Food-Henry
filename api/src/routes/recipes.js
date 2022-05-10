@@ -23,6 +23,7 @@ router.get('/', async (req, res, next) => {
             return {
                 id: e.id,
                 title: e.title,
+                image: e.image,
                 summary: e.summary,
                 spoonacularScore: e.spoonacularScore,
                 healthScore: e.healthScore,
@@ -71,6 +72,7 @@ router.get('/', async (req, res, next) => {
 //             return {
 //                 id: e.id,
 //                 title: e.title,
+//                 image: e.image,
 //                 summary: e.summary,
 //                 spoonacularScore: e.spoonacularScore,
 //                 healthScore: e.healthScore,
@@ -119,6 +121,7 @@ router.get('/:id', async (req, res, next) => {
             let toResponse = {
                 id: dateDB.id,
                 title: dateDB.title,
+                image: dateDB.image,
                 summary: dateDB.summary,
                 spoonacularScore: dateDB.spoonacularScore,
                 healthScore: dateDB.healthScore,
@@ -164,6 +167,7 @@ router.get('/:id', async (req, res, next) => {
 //             let toResponse = {
 //                 id: dateDB.id,
 //                 title: dateDB.title,
+//                 image: dateDB.image,
 //                 summary: dateDB.summary,
 //                 spoonacularScore: dateDB.spoonacularScore,
 //                 healthScore: dateDB.healthScore,

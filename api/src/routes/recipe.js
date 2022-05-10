@@ -19,7 +19,7 @@ router.post('/', async (req, res, next) => {
 
         if (hayDietas.length == 0) return res.status(404).send('No hay dietas desde la API para relacionar la receta.')
 
-        let { title, summary, spoonacularScore, healthScore, steps, diets } = req.body;
+        let { title, summary, spoonacularScore, healthScore, steps, diets, image } = req.body;
 
         if (!title || !summary || !diets) return res.status(404).send('Faltan datos mínimos para la creación de la receta.');
         if (typeof spoonacularScore != 'number' || typeof healthScore != 'number') return res.status(404).send('Puntuación y nivelSaludable deben ser números.');
@@ -28,6 +28,7 @@ router.post('/', async (req, res, next) => {
             let receta = await Recipe.create({
                 id: `${id()}PI`,
                 title: title.toLowerCase(),
+                image,
                 summary: summary.toLowerCase(),
                 steps: steps.toLowerCase(),
                 spoonacularScore,
@@ -60,7 +61,7 @@ router.post('/', async (req, res, next) => {
 //         let hayDietas = await Diet.findAll();
 //         if (hayDietas.length == 0) return res.status(404).send('No hay dietas desde la API para relacionar la receta.')
 
-//         let { title, summary, spoonacularScore, healthScore, steps, diets } = req.body;
+//         let { title, summary, spoonacularScore, healthScore, steps, diets, image } = req.body;
 
 //         if (!title || !summary || !diets) return res.status(404).send('Faltan datos mínimos para la creación de la receta.');
 //         if (typeof spoonacularScore != 'number' || typeof healthScore != 'number') return res.status(404).send('Puntuación y nivelSaludable deben ser números.');
@@ -69,6 +70,7 @@ router.post('/', async (req, res, next) => {
 //             let receta = await Recipe.create({
 //                 id: `${id()}PI`,
 //                 title: title.toLowerCase(),
+//                 image,
 //                 summary: summary.toLowerCase(),
 //                 steps: steps.toLowerCase(),
 //                 spoonacularScore,

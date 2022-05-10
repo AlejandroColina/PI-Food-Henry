@@ -13,6 +13,10 @@ module.exports = (sequelize) => {
       allowNull: false
     },
 
+    image:{
+      type:DataTypes.STRING,
+    },
+
     summary: {
       type: DataTypes.TEXT,
       allowNull: false

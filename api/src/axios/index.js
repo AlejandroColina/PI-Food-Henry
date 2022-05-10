@@ -1,15 +1,19 @@
 const axios = require('axios');
 const { Diet, API_KEY1 } = require('../db');
 
+const api = [];
+
 async function dataApi() {
     // try {
-    //     const response = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY1}&addRecipeInformation=true&number=100`);
-    //     let data = await response.data.results
-    //     return data;
+    //     if (api.length === 0) {
+    //         const response = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY1}&addRecipeInformation=true&number=100`);
+    //         let data = await response.data.results
+    //         return data;
+    //     }
     // } catch (error) {
     //     console.error(`Could not get DATA-API ${error}`)
     // }
-};
+}
 
 async function findByAPI(id) {
     // try {
