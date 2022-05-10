@@ -13,3 +13,29 @@ select:hover {
     text-decoration: underline;
     color: var(--words-hover);
 }
+
+@media (max-width:400px) {
+    select{
+        margin: 4px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .allSelect {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 140px;
+        background-color: var(--bg-color);
+        color: var(--words-color);
+        font-weight: bold;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        appearance: none;
+        margin: 4px;
+    }    
+}

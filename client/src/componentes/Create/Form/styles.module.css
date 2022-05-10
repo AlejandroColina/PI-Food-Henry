@@ -2,11 +2,10 @@
     box-shadow: 0 0 2px 2px #5b3a29 inset;
     border-radius: 4px;
     width: 950px;
-    height: 400px;
+    height: 550px;
     display: grid;
     grid-template-rows: 90% 10%;
     padding: 25px;
-
 }
 
 .generalityOne {
@@ -71,7 +70,21 @@ label {
     margin: 0 auto;
 }
 
-.inputFormhover {
+.inputForm:hover {
+    outline: none;
+    font-style: oblique;
+}
+
+.textArea{
+    width: 400px;
+    height: 60px;
+    background-color: rgba(223, 223, 223, 0.411);
+    border-radius: 3px;
+    border: none;
+    margin: 0 auto;
+}
+
+.textArea:hover {
     outline: none;
     font-style: oblique;
 }
@@ -105,4 +118,19 @@ label {
     text-align: right;
     color: red;
     margin: 0px;
+}
+
+.figure{
+    height: 120px;
+    width: 200px;
+    transform: translate(115px, -10px);
+    z-index: 2;
+    margin: 0;
+}
+
+.figure img{
+    height: 120px;
+    width: 200px;
+    border-radius: 6px;
+    border: 2px solid rgb(51, 28, 12);
 }

@@ -63,3 +63,18 @@
     margin: 10px;
     font-size: 16px;
 }
+
+.delAdd{
+    width: 35px;
+    height: 70px;
+    background-color: rgba(128, 128, 128, 0.466);
+    backdrop-filter: blur(8px);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;    
+    position: absolute;
+    transform: translate(260px, -330px);
+    
+}

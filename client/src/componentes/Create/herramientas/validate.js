@@ -1,10 +1,15 @@
 export default function validate(input) {
     let error = {};
+    let isPhoto = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w-]+)+[\w\-_~:/?#[\]@!&',;=.]+(?:png|jpg|jpeg|gif|svg)+$/gi
 
     if (!input?.title.trim()) {
         error.title = 'La receta debe tener título.';
     } else if (/\d{5}/g.test(input?.title)) {
         error.title = 'El título no puede llevar 5 números seguidos.';
+    }
+
+    if (!isPhoto.test(input.image)) {
+        error.image = 'El vínculo no coincide para una imágen.'
     }
 
     if (!input?.summary.trim()) {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { getDiets, setDietsStore } from '../../../redux/action';
 import styles from './styles.module.css';
@@ -8,12 +8,11 @@ function Diets() {
     let [checks, setChecks] = useState([]);
 
     useEffect(() => {
-        dispatch(getDiets());
+        dispatch(getDiets())
         dispatch(setDietsStore(checks))
-        
     }, [dispatch, checks]);
 
-    const { diets } = useSelector(state => state);
+    const { diets} = useSelector(state => state);
     
     const onChangeCheck = (e) => {
         setChecks(() => {
@@ -26,7 +25,6 @@ function Diets() {
             return val
         })
     }
-
     return (
         <div className={styles.allCheckbox}>
             <ul>{

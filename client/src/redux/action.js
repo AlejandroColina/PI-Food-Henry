@@ -1,5 +1,5 @@
 import axios from "axios";
-import { DETAILS, ALLRECIPES, CLEAR_RECIPES, CLEAR_DETAILS, ORDER, DIETS, TYPES_DIETS_OF_RECITE } from "./types";
+import { DETAILS, ALLRECIPES, CLEAR_RECIPES, CLEAR_DETAILS, ORDER, DIETS, TYPES_DIETS_OF_RECITE, DELETE, FAVORITES } from "./types";
 
 export function getDetail(id) {
     return async function (dispatch) {
@@ -61,7 +61,6 @@ export function setDietsStore(diets) {
 export function sentApost(payload) {
     return async function (dispatch) {
         try {
-
             axios.post('http://localhost:3001/recipe', payload)
                 .then(res => {
                     if (res.status === 200) alert(res.data)
@@ -89,8 +88,22 @@ export function clearPage() {
     }
 }
 
-export function clearDetails(){
+export function clearDetails() {
     return {
         type: CLEAR_DETAILS
+    }
+}
+
+export function deleteCard(id){ 
+    return {
+        type: DELETE,
+        payload: id
+    }
+}
+
+export function addFavorite(id){
+    return {
+        type: FAVORITES,
+        payload: id
     }
 }

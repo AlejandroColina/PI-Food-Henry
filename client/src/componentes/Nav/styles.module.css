@@ -1,12 +1,12 @@
-:root{
-    --bg-color:#333;
-    --words-color:white;
-    --words-hover:rgb(179, 179, 179);
-}
-
 * {
     box-sizing: border-box;
     margin: 0;
+}
+
+:root {
+    --bg-color: #333;
+    --words-color: white;
+    --words-hover: rgb(179, 179, 179);
 }
 
 .navbar {
@@ -22,7 +22,9 @@
     position: fixed;
     top: 0;
     z-index: 1;
+
 }
+
 
 .navbar ul {
     display: flex;
@@ -49,4 +51,19 @@
     width: 300px;
     height: 30px;
     border: 1px solid white;
+}
+
+@media (max-width:400px) {
+    .navbar {
+        width: 100vw;
+        height: 170px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        background-color: var(--bg-color);
+        position: fixed;
+        top: 0;
+        z-index: 1;
+    }
 }

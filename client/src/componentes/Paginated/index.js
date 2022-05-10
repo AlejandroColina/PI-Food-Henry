@@ -7,16 +7,19 @@ function Pages(props) {
     for (let i = 1; i <= Math.ceil(props.allRecipes / props.elements); i++) {
         posiblePages.push(i)
     }
-
+    
     return (
         <nav>
             <ul className={styles.root}>{
                 posiblePages.map((e) => {
                     return (
-                        <li className={styles.num} key={e}>
-                            <button onClick={() => {  props.paginado(e)}}>
-                                {e}
-                            </button>
+                        <li
+                            id={e}
+                            className={props.paginaActual === e ? styles.active : styles.num} key={e}
+                            onClick={() => {
+                                 props.paginado(e)
+                                 }}>
+                            {e}
                         </li>
                     )
                 })

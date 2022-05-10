@@ -22,7 +22,7 @@ function Details() {
       <section className={styles.subPrincipal}>
         <div className={styles.navbar}>
           <Link className={styles.link} to='/Home'>ALL RECIPES</Link>
-          <Link className={styles.link} to='/create'>CREATE RECIPE</Link>
+          <Link className={styles.link} to='/createrecipe'>CREATE RECIPE</Link>
         </div>
 
         <div className={styles.container}>
@@ -52,11 +52,11 @@ function Details() {
 
           <div className={styles.detailTwo}>
             <hr />
-            <h3><i>Resúmen del plato</i></h3>
+            <h3><i>Summary</i></h3>
             <p dangerouslySetInnerHTML={{ __html: details.summary }} />
-            <p><b>Puntuación: </b>{details.spoonacularScore}</p>
-            <p><b>Nivel de comida saludable: </b>{details.healthScore}</p>
-            <h3><i>Paso a paso</i></h3>
+            <p><b>Personal Score: </b>{details.spoonacularScore}</p>
+            <p><b>Healthy Score: </b>{details.healthScore}</p>
+            <h3><i>Steps</i></h3>
             <p>{details.steps}</p>
           </div>
         </div>

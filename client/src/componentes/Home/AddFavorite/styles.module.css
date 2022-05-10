@@ -1,0 +1,10 @@
+.favoriteBtn{
+    width: 25px;
+    height: 25px;
+    background-color: green;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}

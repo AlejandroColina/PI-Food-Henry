@@ -6,3 +6,5 @@ export const DIETS = 'DIETS';
 export const TYPES_DIETS_OF_RECITE = 'TYPES_DIETS_OF_RECITE';
 export const POST = 'POST';
 export const CLEAR_DETAILS = 'CLEAR_DETAILS';
+export const DELETE = 'DELETE';
+export const FAVORITES = 'FAVORITES';

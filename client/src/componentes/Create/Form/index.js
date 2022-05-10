@@ -4,13 +4,13 @@ import Diets from '../Diets';
 import { useSelector, useDispatch } from 'react-redux';
 import validate from '../herramientas/validate';
 import { sentApost } from '../../../redux/action';
-import { useHistory } from 'react-router-dom';
+import photo from '../../Home/media/photo.png'
 
 function Form() {
   let dispatch = useDispatch()
-  let location = useHistory()
   const [input, setInput] = useState({
     title: '',
+    image: '',
     steps: '',
     summary: '',
     spoonacularScore: 0,
@@ -20,6 +20,7 @@ function Form() {
 
   const [errors, setError] = useState({
     title: '',
+    image: '',
     steps: '',
     summary: '',
     spoonacularScore: '',
@@ -50,17 +51,19 @@ function Form() {
   }
 
   const onPressButton = (e) => {
-    e.preventDefault()
+    // e.preventDefault()
     dispatch(sentApost(input))
-    location.push('/home')
     setInput({
       title: '',
+      image: '',
       steps: '',
       summary: '',
       spoonacularScore: 0,
       healthScore: 0,
       diets: []
     })
+
+    setError({ image: '' })
   }
 
   const onErrors = (e) => {
@@ -72,6 +75,11 @@ function Form() {
     <form className={styles.formRecipe} onSubmit={fails ? onErrors : onPressButton}>
       <section className={styles.generalityOne}>
         <section className={styles.divUnoForm}>
+
+          <div className={styles.figure}>
+            <img src={errors.image === undefined ? input.image : photo} alt={input.title} />
+          </div>
+
           <div className={styles.prueba}>
             <label htmlFor='title'>A title for the recipe *</label>
             <input
@@ -86,29 +94,16 @@ function Form() {
           </div>
 
           <div className={styles.prueba}>
-            <label htmlFor='steps'>Steps</label>
+            <label htmlFor='title'>A url to recipe </label>
             <input
               className={styles.inputForm}
               onChange={handleChange}
-              type='textarea'
-              value={input.steps}
-              name='steps'
-              placeholder='steps...'
+              type='text'
+              value={input.image}
+              name='image'
+              placeholder='copy and paste the url...'
             />
-            <p className={styles.soyerror} >{errors?.steps}</p>
-          </div>
-
-          <div className={styles.prueba}>
-            <label htmlFor='summary'>Summary to the recipe *</label>
-            <input
-              className={styles.inputForm}
-              onChange={handleChange}
-              type='textarea'
-              value={input.summary}
-              name='summary'
-              placeholder='summary...'
-            />
-            <p className={styles.soyerror} >{errors?.summary}</p>
+            <p className={styles.soyerror} >{errors?.image}</p>
           </div>
 
           <div className={styles.prueba}>
@@ -136,6 +131,31 @@ function Form() {
             />
             <p className={styles.soyerror} >{errors?.healthScore}</p>
           </div>
+
+          <div className={styles.prueba}>
+            <label htmlFor='steps'>Steps</label>
+            <textarea
+              className={styles.textArea}
+              onChange={handleChange}
+              value={input.steps}
+              name='steps'
+              placeholder='steps...'
+            />
+            <p className={styles.soyerror} >{errors?.steps}</p>
+          </div>
+
+          <div className={styles.prueba}>
+            <label htmlFor='summary'>Summary to the recipe *</label>
+            <textarea
+              className={styles.textArea}
+              onChange={handleChange}
+              value={input.summary}
+              name='summary'
+              placeholder='summary...'
+            />
+            <p className={styles.soyerror} >{errors?.summary}</p>
+          </div>
+
         </section>
 
         <div className={styles.divDosForm}>
@@ -146,7 +166,7 @@ function Form() {
       </section>
       <div className={fails > 0 ? styles.nones : styles.generalityTwo}>
         <input
-        className={styles.btnSubmit}
+          className={styles.btnSubmit}
           type='submit'
           value='GENERAR'
         />

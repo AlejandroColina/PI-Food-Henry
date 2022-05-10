@@ -2,13 +2,20 @@ import React from 'react';
 import styles from './styles.module.css';
 import { Link } from 'react-router-dom';
 import photo from '.././media/photo.png';
+import Delete from '../Delete';
+import Favorite from '../AddFavorite';
+
 function Card(props) {
   return (
-    <Link className={styles.link} to={`/detail/${props.id}`}>
-      <div key={props.id} className={styles.container}>
-        <img src={props.image ? props.image : photo} alt={props.title} />
-
-        <div className={styles.divInfo}>
+    <div key={props.id} className={styles.container}>
+      <img src={props.image ? props.image : photo} alt={props.title} />
+      <section className={styles.delAdd}>
+        {props.del ? <Delete id={props.id}/> : ''}
+        {props.add ? <Favorite id={props.id} />: ''}
+        
+      </section>
+      <div className={styles.divInfo}>
+        <Link className={styles.link} to={`/detailrecipe/${props.id}`}>
 
           <div className={styles.divInfoOne}>
             <h3>{props.title}</h3>
@@ -23,9 +30,9 @@ function Card(props) {
             </p>
           </div>
 
-        </div>
+        </Link>
       </div>
-    </Link>
+    </div>
   )
 }
 

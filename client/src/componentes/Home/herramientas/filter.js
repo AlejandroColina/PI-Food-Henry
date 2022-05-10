@@ -2,9 +2,9 @@ export function filter(allRecipes, option) {
     switch (option) {
         case 'ASC':
             return allRecipes?.flat().sort((a, b) => {
-                if (a.title < b.title) {
+                if (a.title.toLowerCase() < b.title.toLowerCase()) {
                     return -1
-                } else if (a.title > b.title) {
+                } else if (a.title.toLowerCase() > b.title.toLowerCase()) {
                     return 1
                 } else {
                     return 0
@@ -13,9 +13,9 @@ export function filter(allRecipes, option) {
 
         case 'DESC':
             return allRecipes?.flat().sort((a, b) => {
-                if (a.title > b.title) {
+                if (a.title.toLowerCase() > b.title.toLowerCase()) {
                     return -1
-                } else if (a.title < b.title) {
+                } else if (a.title.toLowerCase() < b.title.toLowerCase()) {
                     return 1
                 } else {
                     return 0

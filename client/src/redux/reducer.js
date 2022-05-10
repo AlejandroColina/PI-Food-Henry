@@ -1,12 +1,14 @@
-import { DETAILS, ALLRECIPES, CLEAR_RECIPES, ORDER, DIETS, TYPES_DIETS_OF_RECITE, POST, CLEAR_DETAILS } from './types';
+import { DETAILS, ALLRECIPES, CLEAR_RECIPES, ORDER, DIETS, TYPES_DIETS_OF_RECITE, POST, CLEAR_DETAILS, DELETE, FAVORITES } from './types';
 
 const initialState = {
     details: [],
     allRecipes: [],
     diets: [],
     types_diets_of_recite: [],
-    ordered: ''
+    ordered: '',
+    favorites: []
 };
+
 
 export function reducer(state = initialState, { type, payload }) {
     switch (type) {
@@ -54,6 +56,21 @@ export function reducer(state = initialState, { type, payload }) {
         case POST:
             return {
                 ...state
+            }
+
+        case DELETE:
+            return {
+                ...state,
+                allRecipes: state.allRecipes.filter(item => item.id !== payload),
+                favorites : state.favorites.filter(item => item.id !== payload)
+            }
+
+        case FAVORITES:
+            return {
+                ...state,
+                favorites: state.favorites.some(item => item.id === payload)
+                    ? [...state.favorites]
+                    : [...state.favorites, state.allRecipes.find(item => item.id === payload)]
             }
 
         default: return state
