@@ -13,16 +13,4 @@ conn.sync({ force: true })
       console.log('Listening at 3001 for Express (index.js)');
       console.log('============================');
     });
-  })
-
-    .then(async () => {
-
-      try {
-        let dietas = [];
-        rezetas?.map(e => dietas.push(e.diets));
-        dietas = [...new Set(dietas.flat())]?.map(e => Diet.create({ title: e }));
-        return await Promise.all(dietas)
-      } catch (error) {
-        console.log(error)
-      }
-    })
+  });
