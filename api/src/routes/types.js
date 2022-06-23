@@ -2,6 +2,8 @@ const express = require('express');
 const { Router } = require('express');
 const router = Router();
 const { Diet } = require('../db');
+const cors = require('cors');
+router.use(cors());
 router.use(express.json());
 
 

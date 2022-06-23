@@ -17,7 +17,7 @@ function App() {
           <Nav />
           <Home />
         </Route>
-        <Route exact path='/start' component={InitialPage} />
+        <Route exact path='/' component={InitialPage} />
         <Route exact path='/createrecipe' component={Create} />
         <Route exact path='/detailrecipe/:id' component={Details} />
         <Route exact path='/favorites' component={Favorites} />

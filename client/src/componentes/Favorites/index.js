@@ -3,10 +3,12 @@ import Card from './../Home/Card/index';
 import { useSelector } from 'react-redux';
 import styles from './styles.module.css';
 import { Link } from 'react-router-dom';
+import Footer from '../Footer'
 
 function Favorites() {
     const { favorites } = useSelector(state => state);
     return (
+        <>
         <main>
             <div className={styles.initial}>
                 <section className={styles.sectionLink}>
@@ -40,6 +42,8 @@ function Favorites() {
                 : <h1>😢😢 NO TIENES FAVORITOS 😢😢</h1>
             }</section>
         </main>
+        <Footer/>
+        </>
     )
 }
 

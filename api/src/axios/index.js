@@ -1,9 +1,14 @@
 const axios = require('axios');
-const { Diet, API_KEY1 } = require('../db');
+const { Diet,
+    API_KEY1,
+    API_KEY2,
+    API_KEY3,
+    API_KEY4,
+    API_KEY5 } = require('../db');
 
 async function dataApi() {
     try {
-        let response = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY1}&addRecipeInformation=true&number=100`)
+        let response = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY2}&addRecipeInformation=true&number=100`)
         let data = await response.data.results
         return data
     } catch (error) {
@@ -13,7 +18,7 @@ async function dataApi() {
 
 async function findByAPI(id) {
     try {
-        const response = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY1}`)
+        const response = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY2}`)
         let data = await response.data;
 
         let st = await data?.analyzedInstructions?.map(e => e.steps)?.flat(Infinity)?.map(e => e.step);

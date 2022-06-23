@@ -8,6 +8,7 @@ import Fotter from './../Footer/index';
 import Pages from '../Paginated';
 
 function Home() {
+  const loadGIF = 'https://i.stack.imgur.com/kOnzy.gif'
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -29,40 +30,46 @@ function Home() {
   }
 
   return (
-    <main>
-      <div className={styles.title}>
-        <div className={styles.henry}><h2>HENRY FOOD HENRY FOOD HENRY FOOD HENRY</h2></div>
-      </div>
+    <>
+      <main>
+        <div className={styles.title}>
+          <div className={styles.henry}><h2>HENRY FOOD HENRY FOOD HENRY FOOD HENRY</h2></div>
+        </div>
 
-      <div className={styles.container}>{
-        toRender.map((recipe) => {
-          return (
-            <div key={recipe.id}>
-              <Card
-                key={recipe.id}
-                id={recipe.id}
-                image={recipe.image}
-                title={recipe.title}
-                diets={recipe.diets}
-                healthScore={recipe.healthScore}
-                spoonacularScore={recipe.spoonacularScore}
-                add={true}
-                del={true}
-              />
+        <div className={styles.container}>{
+          !toRender.length
+            ? <div className={styles.loader} >
+              <img src={loadGIF} alt='Loading' />
             </div>
-          )
-        })
-      }</div>
+            : toRender.map((recipe) => {
+              return (
+                <div key={recipe.id}>
+                  <Card
+                    key={recipe.id}
+                    id={recipe.id}
+                    image={recipe.image}
+                    title={recipe.title}
+                    diets={recipe.diets}
+                    healthScore={recipe.healthScore}
+                    spoonacularScore={recipe.spoonacularScore}
+                    add={true}
+                    del={true}
+                  />
+                </div>
+              )
+            })
+        }</div>
 
-      <Pages
-        allRecipes={obj.flat().length}
-        elements={cantidadRecetas}
-        paginado={paginado}
-        paginaActual={paginaActual}
-      />
+        <Pages
+          allRecipes={obj.flat().length}
+          elements={cantidadRecetas}
+          paginado={paginado}
+          paginaActual={paginaActual}
+        />
 
+      </main>
       <Fotter />
-    </main>
+    </>
   )
 }
 

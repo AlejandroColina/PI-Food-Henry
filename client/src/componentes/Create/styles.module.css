@@ -4,12 +4,12 @@
 }
 
 .container {
+    min-height: 100vh;
+    width: 100vw;
     background-image: url('../Home/media/table.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-size:cover;
-    max-width: 100vw;
-    min-height: 800px;
+    background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: center;

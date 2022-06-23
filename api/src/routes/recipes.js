@@ -4,12 +4,14 @@ const router = Router();
 const { Diet, Recipe } = require('../db');
 const { findByAPI, dataApi } = require('../axios');
 const { rezetas } = require('../axios/rezetas');
+const cors = require('cors');
+router.use(cors());
 router.use(express.json());
 
 router.get('/', async (req, res, next) => {
     try {
+        
         const { name } = req.query;
-
         let api = await dataApi();
 
         let BD = await Recipe.findAll({
@@ -37,7 +39,7 @@ router.get('/', async (req, res, next) => {
 
         if (recetasBD.length == 0 && api === undefined
             || recetasBD.length == 0 && api?.length == 0) return res.status(404).send('not data');
-        api.length ? recetasBD.push(api) : recetasBD;
+        api?.length ? recetasBD.push(api) : recetasBD;
 
 
         if (name !== undefined) {

@@ -61,7 +61,7 @@ export function setDietsStore(diets) {
 export function sentApost(payload) {
     return async function (dispatch) {
         try {
-            axios.post('http://localhost:3001/recipe', payload)
+                axios.post('http://localhost:3001/recipe', payload)
                 .then(res => {
                     if (res.status === 200) alert(res.data)
                 })

@@ -1,12 +1,10 @@
 .principal {
     width: 100vw;
-    min-height: 1000px;
-    max-height: auto;
+    height: 200vh;
     background-image: url('../Home/media/table.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    position: relative;
 }
 
 .subPrincipal {
